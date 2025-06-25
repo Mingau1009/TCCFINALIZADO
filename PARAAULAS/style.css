@@ -1,0 +1,14 @@
+@media print {
+    .conteudo-esconder-pdf{
+      display: none !important;
+    }
+
+    .container{
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .table{
+      width: 100vw !important;
+    }
+  }

@@ -1,0 +1,175 @@
+/* SIDEBAR */
+#igsidebar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  height: 100vh !important;
+  width: 85px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  background-color: #252525 !important;
+  padding: 25px 20px !important;
+  overflow-x: hidden !important;
+  transition: all 0.4s ease !important;
+  z-index: 1000 !important;
+}
+
+#igsidebar:hover {
+  width: 390px !important;
+}
+
+/* HEADER DO SIDEBAR */
+#igsidebar .sidebar-header {
+  display: flex !important;
+  align-items: center !important;
+}
+
+#igsidebar .sidebar-header img {
+  width: 42px !important;
+  border-radius: 50% !important;
+}
+
+#igsidebar .sidebar-header h2 {
+  color: #fff !important;
+  font-size: 14px !important; /* Alterado para 14px */
+  font-weight: 600 !important;
+  white-space: nowrap !important;
+  margin-left: 23px !important;
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+#igsidebar:hover .sidebar-header h2 {
+  opacity: 1 !important;
+}
+
+/* LINKS DO SIDEBAR */
+#igsidebar .sidebar-links {
+  list-style: none !important;
+  margin-top: 20px !important;
+  height: 80% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-width: thin !important;
+  scrollbar-color: #565353 transparent !important;
+  padding-left: 0 !important;
+}
+
+#igsidebar .sidebar-links::-webkit-scrollbar {
+  width: 8px !important;
+  height: 0px !important;
+}
+
+#igsidebar .sidebar-links::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+
+#igsidebar .sidebar-links::-webkit-scrollbar-thumb {
+  background-color: #565353 !important;
+  border-radius: 4px !important;
+  border: 2px solid transparent !important;
+  background-clip: content-box !important;
+}
+
+#igsidebar .sidebar-links::-webkit-scrollbar-thumb:hover {
+  background-color: #565353 !important;
+}
+
+#igsidebar .sidebar-links li a {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0 20px !important;
+  color: #fff !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  padding: 15px 10px !important;
+  text-decoration: none !important;
+  transition: 0.2s ease !important;
+  font-size: 14px !important; /* Alterado para 14px */
+}
+
+#igsidebar .sidebar-links li a:hover {
+  color: #161a2d !important;
+  background: #fff !important;
+  border-radius: 4px !important;
+}
+
+/* SEPARADORES DE SEÇÃO */
+#igsidebar .sidebar-links h4 {
+  color: #fff !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+  margin: 10px 0 !important;
+  position: relative !important;
+  font-size: 14px !important; /* Alterado para 14px */
+}
+
+#igsidebar .sidebar-links h4 span {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease !important;
+}
+
+#igsidebar:hover .sidebar-links h4 span {
+  opacity: 1 !important;
+}
+
+#igsidebar .sidebar-links .menu-separator {
+  position: absolute !important;
+  left: 0 !important;
+  top: 50% !important;
+  width: 100% !important;
+  height: 1px !important;
+  transform: translateY(-50%) scaleX(1) !important;
+  background: #c6c6c6 !important;
+  transform-origin: right !important;
+  transition: transform 0.3s ease !important;
+}
+
+#igsidebar:hover .sidebar-links .menu-separator {
+  transform: scaleX(0) !important;
+}
+
+/* PERFIL DO USUÁRIO (OPCIONAL) */
+#igsidebar .user-account {
+  margin-top: auto !important;
+  padding: 12px 10px !important;
+  margin-left: -10px !important;
+}
+
+#igsidebar .user-profile {
+  display: flex !important;
+  align-items: center !important;
+  color: #161a2d !important;
+}
+
+#igsidebar .user-profile img {
+  width: 42px !important;
+  border-radius: 50% !important;
+  border: 2px solid #fff !important;
+}
+
+#igsidebar .user-profile h3 {
+  font-size: 14px !important; /* Alterado para 14px */
+  font-weight: 600 !important;
+  margin: 0 !important;
+}
+
+#igsidebar .user-profile span {
+  font-size: 14px !important; /* Alterado para 14px */
+  font-weight: 600 !important;
+}
+
+#igsidebar .user-detail {
+  margin-left: 23px !important;
+  white-space: nowrap !important;
+}
+
+#igsidebar:hover .user-account {
+  background: #fff !important;
+  border-radius: 4px !important;
+}
+
+/* CONTEÚDO PRINCIPAL AJUSTADO COM O SIDEBAR */
+#igsidebar:hover ~ .main-content {
+  margin-left: 390px !important;
+}
