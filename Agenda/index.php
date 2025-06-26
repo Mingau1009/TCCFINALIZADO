@@ -38,14 +38,14 @@ $alunos = Db::conexao()->query("SELECT id, nome FROM aluno WHERE ativo = 1 ORDER
                 <form class="ms-2 me-2 row g-3">
 
                     <div class="col-md-5 col-sm-12">
-                        <label class="form-label" for="user_id">Pesquisar eventos do profissional</label>
+                        <label class="form-label" for="user_id">Pesquisar eventos por Nutricionista</label>
                         <select name="user_id" id="user_id" class="form-select">
                             <option value="">Selecione</option>
                         </select>
                     </div>
 
                     <div class="col-md-5 col-sm-12">
-                        <label class="form-label" for="client_id">Pesquisar eventos do cliente</label>
+                        <label class="form-label" for="client_id">Pesquisar eventos do Aluno</label>
                         <select name="client_id" id="client_id" class="form-select">
                             <option value="">Selecione</option>
                         </select>

@@ -239,7 +239,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                 </div>
                 <div class="modal-body">
-                    <p id="descricao-visualizar" class="text-wrap"></p>
+                    <p id="descricao-visualizar" class="text-wrap" style="word-break: break-word;"></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">FECHAR</button>

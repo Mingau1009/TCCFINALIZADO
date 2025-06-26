@@ -30,7 +30,7 @@ $aulas = $queryAulas->fetchAll(PDO::FETCH_ASSOC);
 <section class="p-3" style="margin-left:85px;">
     <div class="text-end mb-2 conteudo-esconder-pdf">
         <button class="btn btn-success newUser " data-bs-toggle="modal" data-bs-target="#userForm">
-            CADASTRAR AULA <i class="bi bi-people"></i>
+            CADASTRAR <i class="bi bi-people"></i>
         </button>
     </div>
     <form method="get" class="mb-2 conteudo-esconder-pdf">

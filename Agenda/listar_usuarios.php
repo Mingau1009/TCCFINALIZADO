@@ -5,7 +5,8 @@ $profissional = filter_input(INPUT_GET, 'profissional', FILTER_SANITIZE_STRING);
 
 if($profissional == 'S') {
     // Listar professores (funcionários)
-    $query = "SELECT id, nome as name, telefone as phone FROM funcionario WHERE ativo = 1 ORDER BY nome ASC";
+    $query = "SELECT id, nome AS name, telefone AS phone FROM funcionario WHERE id = 2 AND ativo = 1 LIMIT 1";
+
 } else {
     // Listar alunos
     $query = "SELECT id, nome as name, telefone as phone FROM aluno WHERE ativo = 1 ORDER BY nome ASC";
