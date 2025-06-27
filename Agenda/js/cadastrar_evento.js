@@ -7,6 +7,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (formCadEvento) {
         formCadEvento.addEventListener("submit", async (e) => {
             e.preventDefault();
+
+            // PEGAR A DATA DO CAMPO START
+            const startInput = document.querySelector('input[name="start"]');
+            if (startInput) {
+                const startDate = new Date(startInput.value);
+                const hoje = new Date();
+                hoje.setHours(0, 0, 0, 0); // Zera hora para comparar só datas
+
+                if (startDate < hoje) {
+                    msgCadEvento.innerHTML = `<div class="alert alert-danger" role="alert">A data de início não pode ser anterior a hoje.</div>`;
+                    return;
+                }
+            }
+
             btnCadEvento.value = "Salvando...";
 
             const dadosForm = new FormData(formCadEvento);
@@ -24,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 msgCadEvento.innerHTML = "";
                 formCadEvento.reset();
 
-                // Correção: use os campos certos do formulário
                 const filtroProfissional = document.getElementById('user_id')?.value ?? "";
                 const filtroAluno = document.getElementById('client_id')?.value ?? "";
 
@@ -43,25 +56,23 @@ document.addEventListener('DOMContentLoaded', function () {
                         client_name: resposta['client_name'],
                         client_phone: resposta['client_phone']
                     };
-                    // Preenche os campos do modal de visualização
+
                     document.getElementById("visualizar_id").innerText = resposta['id'];
                     document.getElementById("visualizar_title").innerText = resposta['title'];
                     document.getElementById("visualizar_start").innerText = resposta['start'];
                     document.getElementById("visualizar_user_id").innerText = resposta['user_id'];
                     document.getElementById("visualizar_name").innerText = resposta['name'];
-                    document.getElementById("visualizar_phone").innerText = resposta['phone']; // telefone do professor
+                    document.getElementById("visualizar_phone").innerText = resposta['phone'];
                     document.getElementById("visualizar_client_id").innerText = resposta['client_id'];
                     document.getElementById("visualizar_client_name").innerText = resposta['client_name'];
-                    document.getElementById("visualizar_client_phone").innerText = resposta['client_phone']; // telefone do aluno
+                    document.getElementById("visualizar_client_phone").innerText = resposta['client_phone'];
 
-
-                    // Adiciona no calendário se estiver visível
                     calendar.addEvent(novoEvento);
                     calendar.render();
                 }
 
-                removerMsg(); // função que provavelmente remove mensagens após um tempo
-                cadastrarModal.hide(); // esconde o modal
+                removerMsg();
+                cadastrarModal.hide();
             }
 
             btnCadEvento.value = "Cadastrar";

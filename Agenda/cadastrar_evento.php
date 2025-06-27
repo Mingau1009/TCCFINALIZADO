@@ -3,6 +3,21 @@ include_once './conexao.php';
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
+// Validação: data de início deve ser **apenas depois** de hoje
+try {
+    $dataInicio = new DateTime($dados['cad_start']);
+    $hoje = new DateTime();
+    $hoje->setTime(0, 0); // Considera só a data, ignora hora
+
+    if ($dataInicio <= $hoje) {
+        echo json_encode(['status' => false, 'msg' => ' O cadastro deve ser feito somente posterior a data atual.']);
+        exit;
+    }
+} catch (Exception $e) {
+    echo json_encode(['status' => false, 'msg' => 'Erro: Data inválida.']);
+    exit;
+}
+
 // Recuperar dados do professor
 $query_professor = "SELECT id, nome, telefone FROM funcionario WHERE id = :id LIMIT 1";
 $result_professor = $conn->prepare($query_professor);
@@ -17,6 +32,7 @@ $result_aluno->bindParam(':id', $dados['cad_client_id']);
 $result_aluno->execute();
 $row_aluno = $result_aluno->fetch(PDO::FETCH_ASSOC);
 
+// Inserir evento
 $query_cad_event = "INSERT INTO events (title, color, start, user_id, client_id) VALUES (:title, :color, :start, :user_id, :client_id)";
 $cad_event = $conn->prepare($query_cad_event);
 
@@ -28,16 +44,16 @@ $cad_event->bindParam(':client_id', $dados['cad_client_id']);
 
 if ($cad_event->execute()) {
     $retorna = [
-        'status' => true, 
-        'msg' => 'Evento cadastrado com sucesso!', 
-        'id' => $conn->lastInsertId(), 
-        'title' => $dados['cad_title'], 
-        'color' => $dados['cad_color'], 
-        'start' => $dados['cad_start'], 
-        'user_id' => $row_professor['id'], 
-        'name' => $row_professor['nome'], 
+        'status' => true,
+        'msg' => 'Evento cadastrado com sucesso!',
+        'id' => $conn->lastInsertId(),
+        'title' => $dados['cad_title'],
+        'color' => $dados['cad_color'],
+        'start' => $dados['cad_start'],
+        'user_id' => $row_professor['id'],
+        'name' => $row_professor['nome'],
         'phone' => $row_professor['telefone'],
-        'client_id' => $row_aluno['id'], 
+        'client_id' => $row_aluno['id'],
         'client_name' => $row_aluno['nome'],
         'client_phone' => $row_aluno['telefone']
     ];

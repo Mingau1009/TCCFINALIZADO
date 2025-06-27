@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {    
+document.addEventListener('DOMContentLoaded', function () {
     const btnViewEditEvento = document.getElementById("btnViewEditEvento");
     const btnViewEvento = document.getElementById("btnViewEvento");
     const formEditEvento = document.getElementById("formEditEvento");
@@ -70,38 +70,47 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!resposta['status']) {
                 msgEditEvento.innerHTML = `<div class="alert alert-danger" role="alert">${resposta['msg']}</div>`;
-            } else {
-                msg.innerHTML = `<div class="alert alert-success" role="alert">${resposta['msg']}</div>`;
-                msgEditEvento.innerHTML = "";
-                formEditEvento.reset();
-
-                const eventoExiste = calendar.getEventById(resposta['id']);
-                const user_id = document.getElementById('user_id').value;
-                const inputClienteId = document.getElementById('client_id');
-                const client_id = inputClienteId.getAttribute('data-target-pesq-client-id');
-
-                if ((user_id == "" || resposta['user_id'] == user_id) && (client_id == "" || resposta['client_id'] == client_id)) {
-                    if (eventoExiste) {
-                        eventoExiste.setProp('title', resposta['title']);
-                        eventoExiste.setProp('color', resposta['color']);
-                        eventoExiste.setExtendedProp('user_id', resposta['user_id']);
-                        eventoExiste.setExtendedProp('name', resposta['name']);
-                        eventoExiste.setExtendedProp('phone', resposta['phone']);
-                        eventoExiste.setExtendedProp('client_id', resposta['client_id']);
-                        eventoExiste.setExtendedProp('client_name', resposta['client_name']);
-                        eventoExiste.setExtendedProp('client_phone', resposta['client_phone']);
-                        eventoExiste.setStart(resposta['start']);
-
-                    }
-                } else {
-                    if (eventoExiste) {
-                        eventoExiste.remove();
-                    }
-                }
-
-                removerMsg();
-                visualizarModal.hide();
+                btnEditEvento.value = "Salvar";
+                return; // ⚠️ Impede que continue e remova o evento da tela
             }
+
+            msg.innerHTML = `<div class="alert alert-success" role="alert">${resposta['msg']}</div>`;
+            msgEditEvento.innerHTML = "";
+            formEditEvento.reset();
+
+            // Remover evento antigo
+            const eventoExistente = calendar.getEventById(resposta['id']);
+            if (eventoExistente) {
+                eventoExistente.remove();
+            }
+
+            // Verifica filtros ativos
+            const user_id = document.getElementById('user_id').value;
+            const inputClienteId = document.getElementById('client_id');
+            const client_id = inputClienteId?.getAttribute('data-target-pesq-client-id');
+
+            // Reinsere o evento se passar nos filtros
+            if ((user_id == "" || resposta['user_id'] == user_id) &&
+                (client_id == "" || resposta['client_id'] == client_id)) {
+
+                const novoEvento = {
+                    id: resposta['id'],
+                    title: resposta['title'],
+                    color: resposta['color'],
+                    start: resposta['start'],
+                    user_id: resposta['user_id'],
+                    name: resposta['name'],
+                    phone: resposta['phone'],
+                    client_id: resposta['client_id'],
+                    client_name: resposta['client_name'],
+                    client_phone: resposta['client_phone']
+                };
+
+                calendar.addEvent(novoEvento);
+            }
+
+            removerMsg();
+            visualizarModal.hide();
             btnEditEvento.value = "Salvar";
         });
     }
