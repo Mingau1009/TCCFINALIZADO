@@ -22,7 +22,7 @@
 
 <div class="container">
 
-    <?php $alunos = Db::conexao()->query("SELECT * FROM `aluno` ORDER BY `nome` ASC")->fetchAll(PDO::FETCH_OBJ);?>
+    <?php $alunos = Db::conexao()->query("SELECT * FROM `aluno` WHERE ativo = 1 ORDER BY `nome` ASC")->fetchAll(PDO::FETCH_OBJ);?>
     <?php $exercicios = Db::conexao()->query("SELECT * FROM `exercicio` ORDER BY `nome` ASC")->fetchAll(PDO::FETCH_OBJ);?>
     <?php $fichas = Db::conexao()->query("SELECT `ficha`.*, `aluno`.`nome` AS aluno_nome FROM `ficha` INNER JOIN `aluno` ON `aluno`.`id` = `ficha`.`aluno_id`")->fetchAll(PDO::FETCH_OBJ); ?>
 

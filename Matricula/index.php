@@ -21,8 +21,12 @@
 <?php include("../Classe/Conexao.php") ?>
 <?php include("../Sidebar/index.php"); ?>
 
-<?php $pesquisa = isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : NULL; ?>
-<?php $ordenar = isset($_GET["ordenar"]) ? $_GET["ordenar"] : "ASC"; ?>
+<?php 
+$ordenar = isset($_GET["ordenar"]) ? $_GET["ordenar"] : "ASC"; 
+$pesquisa = isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : NULL;
+$status = isset($_GET["status"]) ? $_GET["status"] : 1; // Padrão: alunos ativos
+?>
+
 
 <section class="p-3" style="margin-left:85px;">
 
@@ -51,10 +55,10 @@
         </div>
         <div class="d-inline">
             <div class="dropdown d-inline">
-                <button class="btn btn-warning dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">ORDENAR</button>
+                <button class="btn btn-warning dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">FILTRAR</button>
                 <ul class="dropdown-menu filtro-opcoes" aria-labelledby="filterDropdown">
-                    <li><a class="dropdown-item" href="?pesquisa=<?php echo $pesquisa; ?>&ordenar=DESC">ALUNOS ATIVOS</a></li>
-                    <li><a class="dropdown-item" href="?pesquisa=<?php echo $pesquisa; ?>&ordenar=ASC">ALUNOS INATIVOS</a></li>
+                    <li><a class="dropdown-item" href="?pesquisa=<?php echo $pesquisa; ?>&ordenar=<?php echo $ordenar; ?>&status=1">ALUNOS ATIVOS</a></li>
+                    <li><a class="dropdown-item" href="?pesquisa=<?php echo $pesquisa; ?>&ordenar=<?php echo $ordenar; ?>&status=0">ALUNOS INATIVOS</a></li>
                 </ul>
             </div>
         </div>

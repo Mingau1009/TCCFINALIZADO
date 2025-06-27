@@ -25,6 +25,7 @@
 <?php $pesquisa = isset($_GET["pesquisa"]) ? $_GET["pesquisa"] : NULL; ?>
 <?php $ordenar = isset($_GET["ordenar"]) ? $_GET["ordenar"] : "ASC"; ?>
 
+
 <section class="p-3" style="margin-left:85px;">
 
     <div class="text-end mb-2 conteudo-esconder-pdf">
@@ -53,10 +54,10 @@
     </div>
     <div class="d-inline">
         <div class="dropdown d-inline">
-            <button class="btn btn-warning dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">ORDENAR</button>
+            <button class="btn btn-warning dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">FILTRAR</button>
             <ul class="dropdown-menu filtro-opcoes" aria-labelledby="filterDropdown">
-                <li><a class="dropdown-item" href="?pesquisa=<?php echo $pesquisa; ?>&ordenar=DESC">ÚLTIMOS PROFESSORES</a></li>
-                <li><a class="dropdown-item" href="?pesquisa=<?php echo $pesquisa; ?>&ordenar=ASC">PRIMEIROS PROFESSORES</a></li>
+                <li><a class="dropdown-item" href="?pesquisa=<?php echo $pesquisa; ?>&status=1&ordenar=<?php echo $ordenar; ?>">PROFESSORES ATIVOS</a></li>
+                <li><a class="dropdown-item" href="?pesquisa=<?php echo $pesquisa; ?>&status=0&ordenar=<?php echo $ordenar; ?>">PROFESSORES INATIVOS</a></li>
             </ul>
         </div>
     </div>
